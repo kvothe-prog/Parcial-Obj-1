@@ -1,0 +1,59 @@
+import habitantes.*
+import planeta.*
+
+test "habitantes y planetas" {
+	const julieta = new Persona(edad = 42)
+	const ana = new PersonaAtleta(edad = 25 )
+	const rosa = new PersonaAtleta(edad = 45, tecnicas = 8)
+	const perla = new PersonaAtleta(edad = 28, tecnicas = 4, masaMuscular = 6)
+	const monica = new PersonaDocente(edad = 45 , cursos = 6)
+	const luisa = new PersonaDocente( edad = 35, cursos = 1)
+	
+	
+	assert.equals(20, julieta.potencia())
+	assert.equals(8, julieta.inteligencia())
+	assert.equals(false, julieta.esDestacada())
+	
+	assert.equals(28, ana.potencia())
+	assert.equals(12, ana.inteligencia())
+	assert.equals(true, ana.esDestacada())
+	
+	assert.equals(52, rosa.potencia())
+	assert.equals(8, rosa.inteligencia())
+	assert.equals(true, rosa.esDestacada())
+	
+	assert.equals(44, perla.potencia())
+	assert.equals(12, perla.inteligencia())
+	assert.equals(false, perla.esDestacada())
+	
+	assert.equals(20, monica.potencia())
+	assert.equals(20, monica.inteligencia())
+	assert.equals(true, monica.esDestacada())
+	
+	assert.equals(20, luisa.potencia())
+	assert.equals(14, luisa.inteligencia())
+	assert.equals(false, luisa.esDestacada())
+	
+	const triton = new Planeta( habitantes = [julieta, ana, rosa, perla, monica, luisa] )
+	
+	assert.equals([ana, rosa, monica], triton.delegacionDiplomatica())
+	assert.equals(2, triton.valorInicialDefensa())
+	assert.equals(false, triton.esCulto())
+	assert.equals(184, triton.potenciaReal())
+	
+}
+
+test "perla" {
+	const perla = new PersonaAtleta(edad = 28, tecnicas = 4, masaMuscular = 6)
+	perla.entrenar(15)
+	perla.aprenderTecnica()
+	
+	assert.equals(65, perla.potencia())
+	assert.equals(false, perla.esDestacada())
+	
+	perla.aprenderTecnica()
+	
+	assert.equals(true, perla.esDestacada())
+	
+	
+}
